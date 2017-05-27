@@ -1,0 +1,75 @@
+body{
+  margin: 0;
+  content: "HELP"
+}
+.stop{
+  width: 10.5px;
+  height: 10.5px;
+  border-radius: 50px;
+}
+.one{
+  background-color: #EE352E;
+}
+.two{
+  background-color: #EE352E;
+}
+.three{
+  background-color: #EE352E;
+}
+.four{
+  background-color: #00933C;
+}
+.five{
+  background-color: #00933C;
+}
+.six{
+  background-color: #00933C;
+}
+.N{
+  background-color: #FCCC0A;
+}
+.Q{
+  background-color: #FCCC0A;
+}
+.R{
+  background-color: #FCCC0A;
+}
+.A{
+  background-color: #0039A6;
+}
+.C{
+  background-color: #0039A6;
+}
+.E{
+  background-color: #0039A6;
+}
+.B{
+  background-color: #FF6319;
+}
+.D{
+  background-color: #FF6319;
+}
+.F{
+  background-color: #FF6319;
+}
+.M{
+  background-color: #FF6319;
+}
+.G{
+  background-color: #6CBE45;
+}
+.J{
+  background-color: #996633;
+}
+.Z{
+  background-color: #996633;
+}
+.L{
+  background-color: #A7A9AC;
+}
+.S{
+  background-color: #808183;
+}
+.seven{
+  background-color: #B933AD;
+}
