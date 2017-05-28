@@ -6,10 +6,6 @@ var stopidtoname = {};
 var nearbystations = [];
 
 $.getJSON("https://freegeoip.net/json/", function(data) {
-    navigator.geolocation.getCurrentPosition(function(location) {
-      var latitude =  location.coords.latitude;
-      var longitude = location.coords.longitude;
-    });
     var latitude = data.latitude
     var longitude = data.longitude
 
@@ -28,7 +24,7 @@ $.getJSON("https://freegeoip.net/json/", function(data) {
         style: 'mapbox://styles/jrebab/cj37feg0500002rqm7nf0oa0d'
     });
 
-    console.log("longitude" + longitude + "latitude" + latitude)
+    // console.log("longitude" + longitude + "latitude" + latitude)
 
     var usrloc = document.createElement('div');
     usrloc.setAttribute('id', 'usrloc');
@@ -131,15 +127,15 @@ $.getJSON("https://freegeoip.net/json/", function(data) {
 });
 
 $(document).ready(function(){
-    console.log(stopnamed);
-    console.log(stopidtoname)
+    // console.log(stopnamed);
+    // console.log(stopidtoname)
     $('.mapboxgl-ctrl-attrib').hide();
     $('#map').css("height", $(document).height());
-    $.get("https://cors-anywhere.herokuapp.com/https://ee4ecfe4.ngrok.io",function(data,err){
-    console.log(err);
+    $.get("https://cors-anywhere.herokuapp.com/https://e5840b93.ngrok.io",function(data,err){
+    // console.log(err);
     if(data){
         data = JSON.parse(data)
-        // console.log(data);
+        console.log(data);
         for(stationloaded in data){
             $("#"+stationloaded.substring(0,stationloaded.length-1)).show();
             $("#"+stationloaded.substring(0,stationloaded.length-1)).html(stationloaded.substring(0,1));
@@ -231,12 +227,12 @@ $(document).ready(function(){
             }
         }
     }
-    console.log(stopnamed)
+    // console.log(stopnamed)
     setInterval(function(){
         var bounds = map.getBounds();
         var ne = bounds._ne;
         var sw = bounds._sw;
-        console.log(bounds);
+        // console.log(bounds);
         nearbystations = [];
         $('.stop').each(function(){
             // console.log(sw.lng+":::"+ne.lng);
@@ -245,7 +241,7 @@ $(document).ready(function(){
             }
             // console.log('a')
         })
-        console.log(nearbystations);
+        // console.log(nearbystations);
         $($('#near-1').find('.title')).html(nearbystations[0]);
         // for(item of stopnamed[nearbystations[0]]){
         //     console.log(item);
