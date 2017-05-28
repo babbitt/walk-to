@@ -7,7 +7,6 @@ var stopidtoname = {};
     navigator.geolocation.getCurrentPosition(function(location) {
       var latitude =  location.coords.latitude;
       var longitude = location.coords.longitude;
-    });
 
     $('#returnhome').click(function() {
         map.flyTo({
@@ -31,7 +30,7 @@ var stopidtoname = {};
     var userlocation = new mapboxgl.Marker(usrloc)
         .setLngLat([longitude, latitude])
         .addTo(map);
-
+    });
     //Load stops to map
     for (stop of stops.data) {
         if (stop[4] && stop[5] && (stop[0].slice([stop[0].length - 1], [stop[0].length]) != "N" && stop[0].slice([stop[0].length - 1], [stop[0].length]) != "S")) {
