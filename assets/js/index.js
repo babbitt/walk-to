@@ -3,6 +3,7 @@ mapboxgl.accessToken = 'pk.eyJ1IjoianJlYmFiIiwiYSI6IjQ0YTg0MmM0N2M3MGJmNGE2ODU4Y
 var map;
 var stopnamed = {}
 var stopidtoname = {};
+var nearbystations = [];
 
 $.getJSON("https://freegeoip.net/json/", function(data) {
     navigator.geolocation.getCurrentPosition(function(location) {
@@ -55,7 +56,7 @@ $.getJSON("https://freegeoip.net/json/", function(data) {
                     el.className = "stop two";
                     break;
                 case "3":
-                    el.className = "stop three";
+                    el.className = "stop tree";
                     break;
                 case "4":
                     el.className = "stop four";
@@ -134,7 +135,7 @@ $(document).ready(function(){
     console.log(stopidtoname)
     $('.mapboxgl-ctrl-attrib').hide();
     $('#map').css("height", $(document).height());
-    $.get("https://cors-anywhere.herokuapp.com/https://587d347c.ngrok.io",function(data,err){
+    $.get("https://cors-anywhere.herokuapp.com/https://ee4ecfe4.ngrok.io",function(data,err){
     console.log(err);
     if(data){
         data = JSON.parse(data)
@@ -155,7 +156,7 @@ $(document).ready(function(){
                             el.className = "radius two";
                             break;
                         case "3":
-                            el.className = "radius three";
+                            el.className = "radius tree";
                             break;
                         case "4":
                             el.className = "radius four";
@@ -231,6 +232,30 @@ $(document).ready(function(){
         }
     }
     console.log(stopnamed)
+    setInterval(function(){
+        var bounds = map.getBounds();
+        var ne = bounds._ne;
+        var sw = bounds._sw;
+        console.log(bounds);
+        nearbystations = [];
+        $('.stop').each(function(){
+            // console.log(sw.lng+":::"+ne.lng);
+            if(((sw.lng < $(this).attr('long')) && ($(this).attr('long') < ne.lng))&&((sw.lat < $(this).attr('lat')) && ($(this).attr('lat') < ne.lat))){
+                if(!nearbystations[stopidtoname[$(this).attr("id")]]) nearbystations.push(stopidtoname[$(this).attr("id")]);
+            }
+            // console.log('a')
+        })
+        console.log(nearbystations);
+        $($('#near-1').find('.title')).html(nearbystations[0]);
+        // for(item of stopnamed[nearbystations[0]]){
+        //     console.log(item);
+        // }
+        $($('#near-1').find('.lines')).html(nearbystations[0]);
+        $($('#near-2').find('.title')).html(nearbystations[1]);
+        $($('#near-2').find('.lines')).html(nearbystations[0]);
+        $($('#near-3').find('.title')).html(nearbystations[3]);
+        $($('#near-3').find('.lines')).html(nearbystations[0]);
+    },10000)
 });
 setInterval(function(){
     $(".radius").each(function(index,data){

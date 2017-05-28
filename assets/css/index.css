@@ -3,6 +3,44 @@ body {
     height: 100%;
     overflow: hidden;
 }
+#nearby{
+    z-index: 1;
+    bottom: 0;
+    position: absolute;
+    height: 25%;
+    width: 100%;
+    background-color: #000000;
+    box-shadow: 0px 30px 10px;
+    font-family: "Helvetica";
+    color: #FFFFFF;
+    font-size: 1.5em;
+}
+.nearby-station{
+    margin-top: 10px;
+    height: 100%;
+    width: 25%;
+    background-color: #FeFeFe;
+    border-radius: 1%;
+    color: black;
+    font-size: .8em;
+    text-align: center;
+}
+h3{
+    margin: 0;
+    padding-left: 3px;
+}
+.bar{
+      height: 5px;
+      width: 100%;
+      position: absolute;
+      background-color: white;
+}
+.bar-black{
+      height: 5px;
+      width: 100%;
+      position: absolute;
+      background-color: black;
+}
 #usrloc {
     width: 20px;
     height: 20px;
@@ -48,7 +86,7 @@ body {
     height: 20px;
     border-radius: 50px;
     color: white;
-    font-size: 1.2em;
+    font-size: 1em;
     text-align: center;
 }
 
@@ -70,7 +108,7 @@ body {
     background-color: #EE352E;
 }
 
-.three {
+.tree {
     background-color: #EE352E;
 }
 
