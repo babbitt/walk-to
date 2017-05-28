@@ -3,9 +3,12 @@ mapboxgl.accessToken = 'pk.eyJ1IjoianJlYmFiIiwiYSI6IjQ0YTg0MmM0N2M3MGJmNGE2ODU4Y
 var map;
 var stopnamed = {}
 var stopidtoname = {};
-var nearbystations = [];
 
 $.getJSON("https://freegeoip.net/json/", function(data) {
+    navigator.geolocation.getCurrentPosition(function(location) {
+      var latitude =  location.coords.latitude;
+      var longitude = location.coords.longitude;
+    });
     var latitude = data.latitude
     var longitude = data.longitude
 
@@ -24,7 +27,7 @@ $.getJSON("https://freegeoip.net/json/", function(data) {
         style: 'mapbox://styles/jrebab/cj37feg0500002rqm7nf0oa0d'
     });
 
-    // console.log("longitude" + longitude + "latitude" + latitude)
+    console.log("longitude" + longitude + "latitude" + latitude)
 
     var usrloc = document.createElement('div');
     usrloc.setAttribute('id', 'usrloc');
@@ -52,7 +55,7 @@ $.getJSON("https://freegeoip.net/json/", function(data) {
                     el.className = "stop two";
                     break;
                 case "3":
-                    el.className = "stop tree";
+                    el.className = "stop three";
                     break;
                 case "4":
                     el.className = "stop four";
@@ -127,15 +130,15 @@ $.getJSON("https://freegeoip.net/json/", function(data) {
 });
 
 $(document).ready(function(){
-    // console.log(stopnamed);
-    // console.log(stopidtoname)
+    console.log(stopnamed);
+    console.log(stopidtoname)
     $('.mapboxgl-ctrl-attrib').hide();
     $('#map').css("height", $(document).height());
     $.get("https://cors-anywhere.herokuapp.com/https://e5840b93.ngrok.io",function(data,err){
-    // console.log(err);
+    console.log(err);
     if(data){
         data = JSON.parse(data)
-        console.log(data);
+        // console.log(data);
         for(stationloaded in data){
             $("#"+stationloaded.substring(0,stationloaded.length-1)).show();
             $("#"+stationloaded.substring(0,stationloaded.length-1)).html(stationloaded.substring(0,1));
@@ -152,7 +155,7 @@ $(document).ready(function(){
                             el.className = "radius two";
                             break;
                         case "3":
-                            el.className = "radius tree";
+                            el.className = "radius three";
                             break;
                         case "4":
                             el.className = "radius four";
@@ -227,31 +230,7 @@ $(document).ready(function(){
             }
         }
     }
-    // console.log(stopnamed)
-    setInterval(function(){
-        var bounds = map.getBounds();
-        var ne = bounds._ne;
-        var sw = bounds._sw;
-        // console.log(bounds);
-        nearbystations = [];
-        $('.stop').each(function(){
-            // console.log(sw.lng+":::"+ne.lng);
-            if(((sw.lng < $(this).attr('long')) && ($(this).attr('long') < ne.lng))&&((sw.lat < $(this).attr('lat')) && ($(this).attr('lat') < ne.lat))){
-                if(!nearbystations[stopidtoname[$(this).attr("id")]]) nearbystations.push(stopidtoname[$(this).attr("id")]);
-            }
-            // console.log('a')
-        })
-        // console.log(nearbystations);
-        $($('#near-1').find('.title')).html(nearbystations[0]);
-        // for(item of stopnamed[nearbystations[0]]){
-        //     console.log(item);
-        // }
-        $($('#near-1').find('.lines')).html(nearbystations[0]);
-        $($('#near-2').find('.title')).html(nearbystations[1]);
-        $($('#near-2').find('.lines')).html(nearbystations[0]);
-        $($('#near-3').find('.title')).html(nearbystations[3]);
-        $($('#near-3').find('.lines')).html(nearbystations[0]);
-    },10000)
+    console.log(stopnamed)
 });
 setInterval(function(){
     $(".radius").each(function(index,data){
@@ -270,7 +249,7 @@ setInterval(function(){
             $(this).hide()
         }
     })
-},5000)
+},500)
 });
 
 Number.prototype.map = function (in_min, in_max, out_min, out_max) {
