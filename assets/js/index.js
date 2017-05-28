@@ -118,7 +118,7 @@ $.getJSON("https://freegeoip.net/json/", function(data) {
 
 $(document).ready(function() {
     $('#map').css("height", $(document).height());
-    $.get("http://587d347c.ngrok.io",function(data,err){
+    $.get("https://587d347c.ngrok.io",function(data,err){
     console.log(err);
     if(data){
         data = JSON.parse(data)
