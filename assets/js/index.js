@@ -10,11 +10,7 @@ $.getJSON("http://freegeoip.net/json/", function(data) {
     map = new mapboxgl.Map({
         container: 'map',
         minZoom: '15',
-<<<<<<< HEAD
-        maxZoom:'15',
-=======
-        minZoom: '15',
->>>>>>> origin/master
+        maxZoom: '15',
         zoom: 15,
         center: new mapboxgl.LngLat(longitude, latitude),
         style: 'mapbox://styles/jrebab/cj37feg0500002rqm7nf0oa0d'
@@ -28,15 +24,12 @@ $.getJSON("http://freegeoip.net/json/", function(data) {
         .setLngLat([longitude, latitude])
         .addTo(map);
 
-<<<<<<< HEAD
-=======
     document.getElementById('returnhome').addEventListener('click', function() {
         map.flyTo({
             center: [longitude, latitude]
         });
     });
-
->>>>>>> origin/master
+    
     //Load stops to map
     for (stop of stops.data) {
         if (stop[4] && stop[5] && (stop[0].slice([stop[0].length - 1], [stop[0].length]) != "N" && stop[0].slice([stop[0].length - 1], [stop[0].length]) != "S")) {
