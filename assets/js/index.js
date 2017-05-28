@@ -7,6 +7,12 @@ $.getJSON("https://freegeoip.net/json/", function(data) {
     var latitude = data.latitude
     var longitude = data.longitude
 
+    document.getElementById('returnhome').addEventListener('click', function() {
+        map.flyTo({
+            center: [data.longitude, data.latitude]
+        });
+    });
+
     map = new mapboxgl.Map({
         container: 'map',
         minZoom: '15',
@@ -23,12 +29,6 @@ $.getJSON("https://freegeoip.net/json/", function(data) {
     var userlocation = new mapboxgl.Marker(usrloc)
         .setLngLat([longitude, latitude])
         .addTo(map);
-
-    document.getElementById('returnhome').addEventListener('click', function() {
-        map.flyTo({
-            center: [longitude, latitude]
-        });
-    });
 
     //Load stops to map
     for (stop of stops.data) {

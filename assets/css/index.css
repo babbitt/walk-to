@@ -15,21 +15,32 @@ body {
     opacity: .65;
 }
 
+.button {
+    margin: 0px auto;
+    width: 60px;
+    height: 60px;
+    padding: 10px;
+    border-radius: 3px;
+    border-style: none;
+    font-size: 30px;
+    text-align: center;
+    background: #fefefe;
+    box-shadow: 2px 2px 2px #d3d3d3;
+}
+
 #returnhome {
         position: absolute;
         top: 25px;
         right: 25px;
-        margin: 0px auto;
-        width: 60px;
-        height: 60px;
-        padding: 10px;
-        border-radius: 3px;
-        border-style: none;
-        font-size: 30px;
-        text-align: center;
         color: #89C4F4;
-        background: #fefefe;
-    }
+}
+
+#help {
+        position: absolute;
+        top: 95px;
+        right: 25px;
+        color: #F7CA18;
+}
 
 .stop {
     width: 20px;
