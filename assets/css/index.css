@@ -1,75 +1,108 @@
-body{
-  margin: 0;
-  content: "HELP"
+body {
+    margin: 0;
 }
-.stop{
-  width: 10.5px;
-  height: 10.5px;
-  border-radius: 50px;
+
+#usrloc {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: #59ABE3;
+
+    border-style: solid;
+    border-width: 15px;
+    border-color: rgba(228, 241, 254, 0.15);
 }
-.one{
-  background-color: #EE352E;
+
+.stop {
+    width: 20px;
+    height: 20px;
+    border-radius: 50px;
 }
-.two{
-  background-color: #EE352E;
+
+.one {
+    background-color: #EE352E;
 }
-.three{
-  background-color: #EE352E;
+
+.two {
+    background-color: #EE352E;
 }
-.four{
-  background-color: #00933C;
+
+.three {
+    background-color: #EE352E;
 }
-.five{
-  background-color: #00933C;
+
+.four {
+    background-color: #00933C;
 }
-.six{
-  background-color: #00933C;
+
+.five {
+    background-color: #00933C;
 }
-.N{
-  background-color: #FCCC0A;
+
+.six {
+    background-color: #00933C;
 }
-.Q{
-  background-color: #FCCC0A;
+
+.N {
+    background-color: #FCCC0A;
 }
-.R{
-  background-color: #FCCC0A;
+
+.Q {
+    background-color: #FCCC0A;
 }
-.A{
-  background-color: #0039A6;
+
+.R {
+    background-color: #FCCC0A;
 }
-.C{
-  background-color: #0039A6;
+
+.A {
+    background-color: #0039A6;
 }
-.E{
-  background-color: #0039A6;
+
+.C {
+    background-color: #0039A6;
 }
-.B{
-  background-color: #FF6319;
+
+.E {
+    background-color: #0039A6;
 }
-.D{
-  background-color: #FF6319;
+
+.B {
+    background-color: #FF6319;
 }
-.F{
-  background-color: #FF6319;
+
+.D {
+    background-color: #FF6319;
 }
-.M{
-  background-color: #FF6319;
+
+.F {
+    background-color: #FF6319;
 }
-.G{
-  background-color: #6CBE45;
+
+.M {
+    background-color: #FF6319;
 }
-.J{
-  background-color: #996633;
+
+.G {
+    background-color: #6CBE45;
 }
-.Z{
-  background-color: #996633;
+
+.J {
+    background-color: #996633;
 }
-.L{
-  background-color: #A7A9AC;
+
+.Z {
+    background-color: #996633;
 }
-.S{
-  background-color: #808183;
+
+.L {
+    background-color: #A7A9AC;
 }
-.seven{
-  background-color: #B933AD;
+
+.S {
+    background-color: #808183;
+}
+
+.seven {
+    background-color: #B933AD;
 }
