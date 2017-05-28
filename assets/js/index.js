@@ -118,94 +118,96 @@ $.getJSON("https://freegeoip.net/json/", function(data) {
 
 $(document).ready(function() {
     $('#map').css("height", $(document).height());
-    $.get("http://cors-anywhere.herokuapp.com/http://587d347c.ngrok.io",function(data,err){
+    $.get("https://cors-anywhere.herokuapp.com/http://587d347c.ngrok.io",function(data,err){
     console.log(err);
     if(data){
         data = JSON.parse(data)
-        console.log(data);
+        // console.log(data);
         for(stationloaded in data){
             $("#"+stationloaded.substring(0,stationloaded.length-1)).show();
             $("#"+stationloaded.substring(0,stationloaded.length-1)).html(stationloaded.substring(0,1));
             var lat = $("#"+stationloaded.substring(0,stationloaded.length-1)).attr('lat');
             var long = $("#"+stationloaded.substring(0,stationloaded.length-1)).attr('long');
-            for(stopoccurance in stationloaded){
-                var el = document.createElement('div');
-                switch (String(stationloaded).substring(0, 1)) {
-                    case "1":
-                        el.className = "radius one";
-                        break;
-                    case "2":
-                        el.className = "radius two";
-                        break;
-                    case "3":
-                        el.className = "radius three";
-                        break;
-                    case "4":
-                        el.className = "radius four";
-                        break;
-                    case "5":
-                        el.className = "radius five";
-                        break;
-                    case "6":
-                        el.className = "radius six";
-                        break;
-                    case "N":
-                        el.className = "radius N";
-                        break;
-                    case "Q":
-                        el.className = "radius Q";
-                        break;
-                    case "R":
-                        el.className = "radius R";
-                        break;
-                    case "A":
-                        el.className = "radius A";
-                        break;
-                    case "C":
-                        el.className = "radius C";
-                        break;
-                    case "E":
-                        el.className = "radius E";
-                        break;
-                    case "B":
-                        el.className = "radius B";
-                        // break;
-                    case "D":
-                        el.className = "radius D";
-                        break;
-                    case "F":
-                        el.className = "radius F";
-                        break;
-                    case "M":
-                        el.className = "radius M";
-                        break;
-                    case "G":
-                        el.className = "radius G";
-                        break;
-                    case "J":
-                        el.className = "radius J";
-                        break;
-                    case "Z":
-                        el.className = "radius Z";
-                        break;
-                    case "L":
-                        el.className = "radius L";
-                        break;
-                    case "S":
-                        el.className = "radius S";
-                        break;
-                    case "7":
-                        el.className = "radius seven";
-                        break;
-                    case "H":
-                        el.className = "radius H";
-                        break;
+            if(lat && long){
+                for(stopoccurance in stationloaded){
+                    var el = document.createElement('div');
+                    switch (String(stationloaded).substring(0, 1)) {
+                        case "1":
+                            el.className = "radius one";
+                            break;
+                        case "2":
+                            el.className = "radius two";
+                            break;
+                        case "3":
+                            el.className = "radius three";
+                            break;
+                        case "4":
+                            el.className = "radius four";
+                            break;
+                        case "5":
+                            el.className = "radius five";
+                            break;
+                        case "6":
+                            el.className = "radius six";
+                            break;
+                        case "N":
+                            el.className = "radius N";
+                            break;
+                        case "Q":
+                            el.className = "radius Q";
+                            break;
+                        case "R":
+                            el.className = "radius R";
+                            break;
+                        case "A":
+                            el.className = "radius A";
+                            break;
+                        case "C":
+                            el.className = "radius C";
+                            break;
+                        case "E":
+                            el.className = "radius E";
+                            break;
+                        case "B":
+                            el.className = "radius B";
+                            // break;
+                        case "D":
+                            el.className = "radius D";
+                            break;
+                        case "F":
+                            el.className = "radius F";
+                            break;
+                        case "M":
+                            el.className = "radius M";
+                            break;
+                        case "G":
+                            el.className = "radius G";
+                            break;
+                        case "J":
+                            el.className = "radius J";
+                            break;
+                        case "Z":
+                            el.className = "radius Z";
+                            break;
+                        case "L":
+                            el.className = "radius L";
+                            break;
+                        case "S":
+                            el.className = "radius S";
+                            break;
+                        case "7":
+                            el.className = "radius seven";
+                            break;
+                        case "H":
+                            el.className = "radius H";
+                            break;
+                    }
+                    el.setAttribute('id', data[stationloaded][stopoccurance]);
+                    // console.log(lat);
+                    var marker = new mapboxgl.Marker(el)
+                        .setLngLat([long,lat])
+                        .addTo(map);
                 }
-                el.setAttribute('id', data[stationloaded][stopoccurance]);
-                // console.log(lat);
-                var marker = new mapboxgl.Marker(el)
-                    .setLngLat([long,lat])
-                    .addTo(map);
             }
         }
     }
@@ -215,7 +217,7 @@ setInterval(function(){
         dte = new Date();
         var timeleft = parseInt(($(this).attr('id'))*1000)-dte.getTime()
         if(timeleft > 0){
-            console.log(timeleft);
+            // console.log(timeleft);
             timeleft = timeleft*1000
             var radleft = timeleft.map(0, 3000000000, 0, 500)/2;
             $(this).css('height',radleft);
