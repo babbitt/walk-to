@@ -1,15 +1,17 @@
 mapboxgl.accessToken = 'pk.eyJ1IjoianJlYmFiIiwiYSI6IjQ0YTg0MmM0N2M3MGJmNGE2ODU4YzFkZDYwZmZiZWNjIn0.Fm-mS97bjywnFAfkywDp0Q'
 
 var map;
+var stopnamed = {}
+var stopidtoname = {};
 
-$.getJSON("https://freegeoip.net/json/", function(data) {
+    navigator.geolocation.getCurrentPosition(function(location) {
+      var latitude =  location.coords.latitude;
+      var longitude = location.coords.longitude;
+    });
 
-    var latitude = data.latitude
-    var longitude = data.longitude
-
-    document.getElementById('returnhome').addEventListener('click', function() {
+    $('#returnhome').click(function() {
         map.flyTo({
-            center: [data.longitude, data.latitude]
+            center: [longitude, latitude]
         });
     });
 
@@ -33,6 +35,14 @@ $.getJSON("https://freegeoip.net/json/", function(data) {
     //Load stops to map
     for (stop of stops.data) {
         if (stop[4] && stop[5] && (stop[0].slice([stop[0].length - 1], [stop[0].length]) != "N" && stop[0].slice([stop[0].length - 1], [stop[0].length]) != "S")) {
+
+            stopidtoname[stop[0]] = stop[2];
+
+            if(!stopnamed[stop[2]]) stopnamed[stop[2]] = {};
+                var train = stop[0].slice(0,1);
+                if(!stopnamed[stop[2]][train])stopnamed[stop[2]][train] = [];
+
+
             var el = document.createElement('div');
             switch (String(stop[0]).substring(0, 1)) {
                 case "1":
@@ -114,9 +124,11 @@ $.getJSON("https://freegeoip.net/json/", function(data) {
             $(el).hide();
         }
     }
-});
 
-$(document).ready(function() {
+$(document).ready(function(){
+    console.log(stopnamed);
+    console.log(stopidtoname)
+    $('.mapboxgl-ctrl-attrib').hide();
     $('#map').css("height", $(document).height());
     $.get("https://cors-anywhere.herokuapp.com/https://587d347c.ngrok.io",function(data,err){
     console.log(err);
@@ -203,7 +215,10 @@ $(document).ready(function() {
                             break;
                     }
                     el.setAttribute('id', data[stationloaded][stopoccurance]);
-                    // console.log(lat);
+                    if(data[stationloaded][stopoccurance]){
+                        var stopname = stopidtoname[stationloaded.substring(0,stationloaded.length-1)];
+                        stopnamed[stopname][stationloaded.substring(0,1)].push(data[stationloaded][stopoccurance]);
+                    }
                     var marker = new mapboxgl.Marker(el)
                         .setLngLat([long,lat])
                         .addTo(map);
@@ -211,6 +226,7 @@ $(document).ready(function() {
             }
         }
     }
+    console.log(stopnamed)
 });
 setInterval(function(){
     $(".radius").each(function(index,data){
@@ -229,7 +245,7 @@ setInterval(function(){
             $(this).hide()
         }
     })
-},1000)
+},5000)
 });
 
 Number.prototype.map = function (in_min, in_max, out_min, out_max) {
