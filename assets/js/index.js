@@ -9,7 +9,8 @@ $.getJSON("http://freegeoip.net/json/", function(data) {
 
     map = new mapboxgl.Map({
         container: 'map',
-        minZoom: '10',
+        minZoom: '15',
+        minZoom: '15',
         zoom: 15,
         center: new mapboxgl.LngLat(longitude, latitude),
         style: 'mapbox://styles/jrebab/cj37feg0500002rqm7nf0oa0d'
@@ -23,14 +24,11 @@ $.getJSON("http://freegeoip.net/json/", function(data) {
         .setLngLat([longitude, latitude])
         .addTo(map);
 
-    //Change size on scroll
-    map.on('zoomend', function() {
-        var zoompx = String(map.getZoom() * (2/3));
-
-        $('.mapboxgl-marker').css("height", zoompx + 'px');
-        $('.mapboxgl-marker').css("width", zoompx + 'px');
-        $('.mapboxgl-marker').css("border-width", zoompx + 'px');
-    })
+    document.getElementById('returnhome').addEventListener('click', function() {
+        map.flyTo({
+            center: [longitude, latitude]
+        });
+    });
 
     //Load stops to map
     for (stop of stops.data) {
