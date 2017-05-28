@@ -2,7 +2,7 @@ mapboxgl.accessToken = 'pk.eyJ1IjoianJlYmFiIiwiYSI6IjQ0YTg0MmM0N2M3MGJmNGE2ODU4Y
 
 var map;
 
-$.getJSON("http://freegeoip.net/json/", function(data) {
+$.getJSON("https://freegeoip.net/json/", function(data) {
 
     var latitude = data.latitude
     var longitude = data.longitude
@@ -29,7 +29,7 @@ $.getJSON("http://freegeoip.net/json/", function(data) {
             center: [longitude, latitude]
         });
     });
-    
+
     //Load stops to map
     for (stop of stops.data) {
         if (stop[4] && stop[5] && (stop[0].slice([stop[0].length - 1], [stop[0].length]) != "N" && stop[0].slice([stop[0].length - 1], [stop[0].length]) != "S")) {
@@ -215,8 +215,9 @@ setInterval(function(){
         dte = new Date();
         var timeleft = parseInt(($(this).attr('id'))*1000)-dte.getTime()
         if(timeleft > 0){
-            // console.log(timeleft*1000)-dte.getTime());
-            var radleft = timeleft.map(0, 3000000, 0, 500);
+            console.log(timeleft);
+            timeleft = timeleft*1000
+            var radleft = timeleft.map(0, 3000000000, 0, 500)/2;
             $(this).css('height',radleft);
             $(this).css('width',radleft);
             $(this).css('margin-left',-(radleft-20)/2);
